@@ -13,6 +13,31 @@ This project implements a re-architected PHP application with MySQL database usi
 - **Secrets Manager**: Automated credential management
 - **Multi-AZ Deployment**: High availability and fault tolerance
 
+### High-Level Architecture Diagram
+
+```mermaid
+graph TB
+    Internet[Internet] --> ALB[Application Load Balancer]
+    ALB --> ASG[Auto Scaling Group]
+    ASG --> EC2-1[EC2 Instance - AZ1]
+    ASG --> EC2-2[EC2 Instance - AZ2]
+    EC2-1 --> Aurora[Aurora Serverless Cluster]
+    EC2-2 --> Aurora
+    EC2-1 --> SM[Secrets Manager]
+    EC2-2 --> SM
+    
+    subgraph "VPC"
+        subgraph "Public Subnets"
+            ALB
+        end
+        subgraph "Private Subnets"
+            EC2-1
+            EC2-2
+            Aurora
+        end
+    end
+```
+
 ## 🚀 Key Features
 
 - **Auto-scaling Infrastructure**: Automatically scales from 2 to 10 EC2 instances based on CPU utilization
