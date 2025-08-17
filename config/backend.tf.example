@@ -1,0 +1,15 @@
+# Terraform backend configuration example
+# Copy this file to terraform/backend.tf and update with your values
+
+terraform {
+  backend "s3" {
+    bucket         = "your-terraform-state-bucket"
+    key            = "aws-php-data-platform/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock"
+    
+    # Optional: Use assume role for cross-account access
+    # role_arn = "arn:aws:iam::123456789012:role/TerraformRole"
+  }
+}

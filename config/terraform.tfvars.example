@@ -1,0 +1,26 @@
+# Terraform variables configuration example
+# Copy this file to terraform.tfvars and update with your values
+
+aws_region = "us-east-1"
+environment = "dev"
+project_name = "aws-php-data-platform"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+availability_zones = ["us-east-1a", "us-east-1b"]
+
+# EC2 Configuration
+instance_type = "t3.medium"
+
+# Auto Scaling Configuration
+min_size = 2
+max_size = 10
+desired_capacity = 2
+
+# Database Configuration (will be added in later tasks)
+# db_instance_class = "db.serverless"
+# db_engine_version = "8.0.mysql_aurora.3.02.0"
+
+# Domain Configuration (optional)
+# domain_name = "your-domain.com"
+# certificate_arn = "arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"
